@@ -2,10 +2,10 @@ const CONFIG = {
   HEXO_HOME_BANNER_ENABLE: true,
   // 3.14.1以后的版本中，欢迎语在blog.config.js中配置，用英文逗号','隔开多个。
   HEXO_HOME_BANNER_GREETINGS: [
-    'Hi，我是一个程序员',
-    'Hi，我是一个打工人',
-    'Hi，我是一个干饭人',
-    '欢迎来到我的博客🎉'
+    'Hi，欢迎来到Jesson的吉他世界',
+    'Hi，这里有你喜欢的关于吉他的一切',
+    'Hi，愿我的音乐给你感动',
+    '欢迎来到我的博客💙💛'
   ], // 首页大图标语文字
 
   HEXO_HOME_NAV_BUTTONS: true, // 首页是否显示分类大图标按钮
