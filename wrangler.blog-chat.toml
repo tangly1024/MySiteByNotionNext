@@ -3,7 +3,7 @@ main = "workers/blog-chat.js"
 compatibility_date = "2026-07-28"
 
 routes = [
-  { pattern = "blog.tangly1024.com/api/blog-chat", zone_name = "tangly1024.com" }
+  { pattern = "blog.tangly1024.com/api/blog-chat*", zone_name = "tangly1024.com" }
 ]
 
 [vars]

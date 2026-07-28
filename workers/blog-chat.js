@@ -1,4 +1,4 @@
-const DEFAULT_MODEL = 'gemini-2.5-flash-lite'
+const DEFAULT_MODEL = 'gemini-flash-lite-latest'
 const MAX_REQUEST_BYTES = 20000
 const MAX_MESSAGES = 6
 const MAX_CONTEXT_CHARS = 6000
@@ -77,7 +77,12 @@ export default {
       return json({ error: 'Missing GOOGLE_GENERATIVE_AI_API_KEY.' }, { status: 500, headers })
     }
 
-    const body = await request.json()
+    let body
+    try {
+      body = await request.json()
+    } catch {
+      return json({ error: 'Invalid JSON body.' }, { status: 400, headers })
+    }
     const messages = Array.isArray(body.messages) ? body.messages.slice(-MAX_MESSAGES) : []
     const contents = messages.map(message => ({
       role: message.role === 'assistant' ? 'model' : 'user',
@@ -86,18 +91,23 @@ export default {
 
     const model = env.BLOG_CHAT_MODEL || DEFAULT_MODEL
     const context = await siteContext(env).catch(() => '')
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GOOGLE_GENERATIVE_AI_API_KEY}`,
-      {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: prompt(env, context) }] },
-          contents,
-          generationConfig: { temperature: 0.2, maxOutputTokens: 1200 }
-        })
-      }
-    )
+    let response
+    try {
+      response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GOOGLE_GENERATIVE_AI_API_KEY}`,
+        {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            systemInstruction: { parts: [{ text: prompt(env, context) }] },
+            contents,
+            generationConfig: { temperature: 0.2, maxOutputTokens: 1200 }
+          })
+        }
+      )
+    } catch {
+      return json({ error: 'AI model network request failed.' }, { status: 502, headers })
+    }
 
     const data = await response.json()
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text
