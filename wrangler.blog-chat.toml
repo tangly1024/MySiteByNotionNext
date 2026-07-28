@@ -1,0 +1,9 @@
+name = "tangly-blog-chat"
+main = "workers/blog-chat.js"
+compatibility_date = "2026-07-28"
+
+[vars]
+BLOG_CHAT_SITE_URL = "https://blog.tangly1024.com"
+BLOG_CHAT_SITE_NAME = "Tangly AI 实践笔记"
+BLOG_CHAT_CORS_ORIGINS = "https://blog.tangly1024.com"
+BLOG_CHAT_SYSTEM_PROMPT = "你是 Tangly AI 实践笔记的博客助手。这个博客记录个人创业、AI 学习、内容系统、NotionNext 建站和风险认知相关实践。必须使用简体中文回答，只回答与本站内容相关的问题。回答要直接、具体，不要编造文章、链接或作者观点。"
