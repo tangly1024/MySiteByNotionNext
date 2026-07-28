@@ -28,6 +28,14 @@ module.exports = {
   // Chatbase 机器人 @see https://www.chatbase.co/
   CHATBASE_ID: process.env.NEXT_PUBLIC_CHATBASE_ID || null,
 
+  DOCS_CHAT_API:
+    process.env.NEXT_PUBLIC_DOCS_CHAT_API ||
+    'https://notionnext.tangly1024.com/api/docs-chat',
+  DOCS_CHAT_TITLE: process.env.NEXT_PUBLIC_DOCS_CHAT_TITLE || '博客助手',
+  DOCS_CHAT_WELCOME:
+    process.env.NEXT_PUBLIC_DOCS_CHAT_WELCOME ||
+    '你好，我是 Tangly 的博客助手。你可以问我 NotionNext、博客内容和建站配置问题。',
+
   // Dify 聊天机器人 @see https://dify.ai/
   DIFY_CHATBOT_ENABLED: process.env.NEXT_PUBLIC_DIFY_CHATBOT_ENABLED || false,
   DIFY_CHATBOT_BASE_URL: process.env.NEXT_PUBLIC_DIFY_CHATBOT_BASE_URL || '',
