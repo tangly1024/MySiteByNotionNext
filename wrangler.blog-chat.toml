@@ -2,6 +2,10 @@ name = "tangly-blog-chat"
 main = "workers/blog-chat.js"
 compatibility_date = "2026-07-28"
 
+routes = [
+  { pattern = "blog.tangly1024.com/api/blog-chat", zone_name = "tangly1024.com" }
+]
+
 [vars]
 BLOG_CHAT_SITE_URL = "https://blog.tangly1024.com"
 BLOG_CHAT_SITE_NAME = "Tangly AI 实践笔记"
