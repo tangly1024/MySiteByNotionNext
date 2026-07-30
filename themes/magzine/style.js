@@ -24,6 +24,14 @@ const Style = () => {
       html::-webkit-scrollbar-thumb {
         background: #4e4e4e;
       }
+
+      #theme-magzine .cta a:hover {
+        color: #111827;
+      }
+
+      .dark #theme-magzine .cta a:hover {
+        color: #ffffff;
+      }
     `}</style>
   )
 }
